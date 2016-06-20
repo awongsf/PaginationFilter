@@ -1,13 +1,15 @@
 /* THIS PROJECT WAS TESTED ON GOOGLE CHROME */
 
-// Append HTML markup for Search component
-$(".page-header").append('<div class="student-search">\n<input placeholder="Search for students...">\n<button>Search</button>\n</div>');
-
 var studentList = document.getElementsByClassName('student-item');
 var searchButton = document.getElementsByTagName("button")[0];
 var searchInput = document.getElementsByTagName("input")[0];
 var searchResults = [];
 var noMatchesMsg = false;
+
+// Append HTML markup for Search component
+var appendSearch = function () {
+	$(".page-header").append('<div class="student-search">\n<input placeholder="Search for students...">\n<button>Search</button>\n</div>');
+}
 
 // Create and append pagination markup for a given list to the bottom of the page.
 // Determine the number of pages to create by dividing the list length
@@ -119,10 +121,12 @@ var printSearchResults = function () {
 	}
 };
 
+appendSearch();
+
 createPagination(studentList);
 showFirstTenOnly(studentList);
 createPageLinks(studentList);
 
 searchButton.addEventListener("click", printSearchResults);
-searchInput.addEventListener("input", printSearchResults);
+searchInput.addEventListener("keyup", printSearchResults);
 
